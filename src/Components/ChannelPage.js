@@ -8,11 +8,6 @@ function ChannelPage() {
   const [channels, setChannels] = useState([]);
 
   const getChannels = (data) => {
-    // const tempChannels = [];
-    // data.forEach((element) => {
-    //   const temp = element.channel;
-    //   if (!tempChannels.includes(channelName)) tempChannels.push(temp);
-    // });
     const filteredData = data.filter(
       (episode) => episode.channel === channelName
     );
