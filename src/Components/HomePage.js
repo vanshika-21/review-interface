@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import compliancetaskdata from "../compliance-task-data.json";
-import axios from "axios";
 
 function HomePage() {
   const [data, setData] = useState([]);
   const [channels, setChannels] = useState([]);
-  // const [selectedEpisode, setSelectedEpisode] = useState(null);
-
-  // Fetch data from the API or use the provided 'compliance-task-data.json' here
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedShow, setSelectedShow] = useState(null);
+  const [filteredShows, setFilteredShows] = useState([]);
+  const navigate = useNavigate(); // Hook for programmatic navigation
 
   const getChannels = (data) => {
     const tempChannels = [];
@@ -16,89 +17,91 @@ function HomePage() {
       const temp = element.channel;
       if (!tempChannels.includes(temp)) tempChannels.push(temp);
     });
-
     return tempChannels;
   };
 
-  // const getData = () => {
-  //   fetch(compliancetaskdata)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setData(data);
-  //       setChannels(getChannels(data));
-
-  //       console.log(data, "data");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // };
-
-  // const getdata2 = () => {
-  //   axios
-  //     .get("/compliance-task-data.json")
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // };
-
-  console.log(channels);
-  // useEffect(() => {
-  //   getdata2();
-  // }, []);
-
   useEffect(() => {
-    // setData(compliancetaskdata.json);
     setChannels(getChannels(compliancetaskdata));
-    // Define the URL of your JSON file
-    // const jsonFileURL = "../compliance-task-data.json";
-
-    // // Make a GET request using Axios
-    // axios
-    //   .get(jsonFileURL)
-    //   .then((response) => {
-    //     // Log the JSON data
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching JSON data:", error);
-    //   });
-    console.log(compliancetaskdata);
+    setData(compliancetaskdata);
   }, []);
 
-  // Handle episode selection
+  const updateFilteredShows = (query) => {
+    if (!query) {
+      return [];
+    }
+
+    const filtered = data.filter((item) =>
+      item.show.toLowerCase().startsWith(query.toLowerCase())
+    );
+    return filtered;
+  };
+
+  const handleShowSelection = (show) => {
+    setSelectedShow(show);
+    setShowSuggestions(false);
+    setSearchQuery(show.show);
+    navigate(`/channel/${show.channel}/show/${show.episodeNumber}`);
+  };
+
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    if (!query) {
+      setShowSuggestions(false);
+    } else {
+      setShowSuggestions(true);
+    }
+  };
+
+  useEffect(() => {
+    if (searchQuery !== "") {
+      const filtered = updateFilteredShows(searchQuery);
+      setFilteredShows(filtered);
+    } else {
+      setFilteredShows([]); // Clear the filtered list when searchQuery is empty
+    }
+  }, [searchQuery, data]);
 
   return (
     <div>
-      <h1>Home page</h1>
-      {channels &&
-        channels.map((channel) => {
-          return (
-            <div>
-              {/* <h4>{channel}</h4> */}
-              {/* <ul>
-                {data.map((item, idx) => {
-                  if (item.channel === channel) {
-                    return <li key={idx}>{item.show}</li>;
-                  }
-                })}
-              </ul> */}
-
-              <div key={channel}>
-                <h4>
-                  <Link to={`/channel/${channel}`} state={{ data }}>
-                    {channel}
-                  </Link>
-                </h4>
+      <h1>Home Page</h1>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search shows..."
+          className="search-input"
+          value={searchQuery}
+          onChange={handleInputChange}
+        />
+        {showSuggestions && (
+          <div className="suggestions-dropdown">
+            {filteredShows.map((show) => (
+              <div
+                key={show.show + show.episodeNumber}
+                className="suggestion"
+                onClick={() => handleShowSelection(show)}
+              >
+                {show.show} (Episode {show.episodeNumber})
               </div>
-            </div>
-          );
-        })}
+            ))}
+          </div>
+        )}
+      </div>
+
+      {channels.map((channel) => {
+        return (
+          <div key={channel}>
+            <h4>
+              <Link to={`/channel/${channel}`} state={{ data }}>
+                {channel}
+              </Link>
+            </h4>
+          </div>
+        );
+      })}
     </div>
   );
 }
+
 export default HomePage;
