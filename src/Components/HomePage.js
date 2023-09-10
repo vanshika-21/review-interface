@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import compliancetaskdata from "../compliance-task-data.json";
-
+import "../Style/searchBox.css";
 function HomePage() {
   const [data, setData] = useState([]);
   const [channels, setChannels] = useState([]);
