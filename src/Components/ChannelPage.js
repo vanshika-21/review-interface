@@ -8,36 +8,35 @@ function ChannelPage() {
   const [channels, setChannels] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredShows, setFilteredShows] = useState([]);
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const getChannels = (data) => {
     const filteredData = data.filter(
       (episode) => episode.channel === channelName
     );
-
-    console.log(filteredData);
     return filteredData;
   };
 
-  const updateFilteredShows = (query) => {
-    if (!query) {
-      return getChannels(data); // Return all shows when query is empty
+  const updateFilteredShows = (query, status) => {
+    let filteredData = getChannels(data);
+
+    if (status !== "all") {
+      filteredData = filteredData.filter(
+        (episode) => episode.status === status
+      );
     }
 
-    const filtered = getChannels(data).filter((episode) =>
-      episode.show.toLowerCase().startsWith(query.toLowerCase())
-    );
-    return filtered;
+    if (query) {
+      filteredData = filteredData.filter((episode) =>
+        episode.show.toLowerCase().startsWith(query.toLowerCase())
+      );
+    }
+    return filteredData;
   };
-
   const handleInputChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-
-    if (!query) {
-      setFilteredShows(getChannels(data)); // Set all shows when query is empty
-    } else {
-      setFilteredShows(updateFilteredShows(query));
-    }
+    setFilteredShows(updateFilteredShows(query, statusFilter));
   };
   // const getData = () => {
   //   fetch("compliance-task-data.json")
@@ -69,6 +68,12 @@ function ChannelPage() {
   //     });
   // };
 
+  const handleStatusChange = (e) => {
+    const status = e.target.value;
+    setStatusFilter(status);
+    setFilteredShows(updateFilteredShows(searchQuery, status));
+  };
+
   useEffect(() => {
     setChannels(getChannels(compliancetaskdata));
     setData(compliancetaskdata);
@@ -87,23 +92,20 @@ function ChannelPage() {
           value={searchQuery}
           onChange={handleInputChange}
         />
+        <select value={statusFilter} onChange={handleStatusChange}>
+          <option value="all">All</option>
+          <option value="Completed">Completed</option>
+          <option value="Edit required">Edit required</option>
+        </select>
       </div>
       <>
-        {/* {channels.map((data) => {
-          const showLink = `/channel/${channelName}/show/${data.episodeNumber}`;
-          // return <div>Show name: {data.show}</div>;
-          return (
-            <div key={data.episodeNumber}>
-              <Link to={showLink}>{data.show}</Link>
-            </div>
-          );
-        })} */}
-
         {filteredShows.map((data) => {
           const showLink = `/channel/${channelName}/show/${data.episodeNumber}`;
           return (
             <div key={data.episodeNumber}>
-              <Link to={showLink}>{data.show}</Link>
+              <Link to={showLink}>
+                {data.show}&nbsp;{data.status}
+              </Link>
             </div>
           );
         })}
