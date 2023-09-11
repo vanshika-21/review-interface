@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import compliancetaskdata from "../compliance-task-data.json";
 import "../Style/searchBox.css";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import "../Style/HomePage.css";
+
 function HomePage() {
   const [data, setData] = useState([]);
   const [channels, setChannels] = useState([]);
@@ -65,41 +70,62 @@ function HomePage() {
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search shows..."
-          className="search-input"
-          value={searchQuery}
-          onChange={handleInputChange}
-        />
-        {showSuggestions && (
-          <div className="suggestions-dropdown">
-            {filteredShows.map((show) => (
-              <div
-                key={show.show + show.episodeNumber}
-                className="suggestion"
-                onClick={() => handleShowSelection(show)}
-              >
-                {show.show} (Episode {show.episodeNumber})
-              </div>
-            ))}
+      <div>
+        <nav className="navbar">
+          {/* Logo */}
+          <div className="navbar-left">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/d/de/Sony_TV_new.png/225px-Sony_TV_new.png"
+              alt="Logo"
+              className="logo"
+            />
           </div>
-        )}
-      </div>
 
-      {channels.map((channel) => {
-        return (
-          <div key={channel}>
-            <h4>
-              <Link to={`/channel/${channel}`} state={{ data }}>
-                {channel}
-              </Link>
-            </h4>
+          {/* search box design */}
+          <div className="navbar-right">
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Search shows..."
+                className="search-input"
+                value={searchQuery}
+                onChange={handleInputChange}
+              />
+              {showSuggestions && (
+                <div className="suggestions-dropdown">
+                  {filteredShows.map((show) => (
+                    <div
+                      key={show.show + show.episodeNumber}
+                      className="suggestion"
+                      onClick={() => handleShowSelection(show)}
+                    >
+                      {show.show} (Episode {show.episodeNumber})
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        );
-      })}
+        </nav>
+      </div>
+      {/* card design */}
+      <div style={{ marginTop: "60px" }}>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {channels.map((channel) => {
+            return (
+              <Card key={channel} style={{ margin: "16px", minWidth: "200px" }}>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    <Link to={`/channel/${channel}`} state={{ data }}>
+                      {channel}
+                    </Link>
+                  </Typography>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

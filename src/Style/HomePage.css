@@ -1,0 +1,33 @@
+body {
+    /* background: linear-gradient(to right, red, black); */
+    background: #151515;
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+}
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.1)); /* Apply the gradient with 50% transparency */
+    padding: 10px; /* Removed quotes */
+    color:black;
+    display: flex;
+    justify-content: space-between; /* Align content at both ends of the navbar */
+    align-items: center;
+}
+.navbar-left {
+    display: flex; /* Align logo and other content horizontally */
+    align-items: center; /* Vertically center content */
+  }
+  
+  .logo {
+    max-width: 100px; /* Adjust the width of the logo */
+    height: 3rem;
+  }
+  
+  .navbar-right {
+    display: flex; /* Align search box and other content horizontally */
+    align-items: center; /* Vertically center content */
+  }
