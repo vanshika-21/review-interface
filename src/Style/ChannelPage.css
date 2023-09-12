@@ -1,20 +1,94 @@
-body {
-    background: black;
-}
+/* body {
+    background: rgb(253, 252, 252);
+} */
 
 .show-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    background-color: #f9f9f9;
-  }
+/* background: linear-gradient(to top, #006565 0%, #537895 100%); */
+background: url('https://t4.ftcdn.net/jpg/05/06/86/17/360_F_506861774_sspeY1dM9frtiXBhOhtU7YDN6WIHf0rc.jpg');
+background-size: cover;   
+color: white;
+  height: 200px; /* You can adjust the height as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s; /* Add a transition for smooth hover effect */
+}
   
   .show-card a {
     text-decoration: none;
-    color: #333;
+    color: #ffffff;
+    font-weight: bolder;
+  }
+
+  .show-card :hover {
+    transform: scale(1.05); /* Increase card size on hover */
+  }
+
+  .episode-number-header {
+    background-color: #06001c; /* You can adjust the color as needed */
+    color: white;
+    width: 40px; /* Set the width and height to create a circle */
+    height: 40px;
+    border-radius: 50%; /* Make it circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 auto; /* Center horizontally */
+  }
+
+  .status-text {
+    display: inline-block;
+    padding: 2px 8px;
     font-weight: bold;
   }
   
-  .show-card a:hover {
-    color: #ff4500; /* Change color on hover */
+  .completed {
+    border: 2px solid green;
+    border-radius: 4px;
+    color: green !important;
+  }
+  
+  .edit-required {
+    border: 2px solid red;
+    border-radius: 4px;
+    color: red !important;
+  }
+
+  .channel-navbar {
+    position: fixed; /* Set the navbar's position to fixed */
+    top: 0; /* Position it at the top of the page */
+    left: 0;
+    right: 0;
+    z-index: 100; /* Ensure it appears above other content */
+    background-color: rgba(0, 0, 0, 0.9); /* Set the background color with transparency */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: white; /* Set the text color to white */
+    height: 2rem;
+  }
+  
+  .filter-search-container {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .search-input {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  /* Adjust the select element as needed */
+  select {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+    color: #333; /* Adjust the text color as needed */
   }

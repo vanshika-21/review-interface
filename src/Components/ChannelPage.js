@@ -88,9 +88,14 @@ function ChannelPage() {
 
   return (
     <div>
-      <nav className="navbar">
+      <nav className="channel-navbar">
         <h1 style={{ color: "white" }}>{channelName} </h1>
-        <div className="search-box">
+        <div className="filter-search-container">
+          <select value={statusFilter} onChange={handleStatusChange}>
+            <option value="all">All</option>
+            <option value="Completed">Completed</option>
+            <option value="Edit required">Edit required</option>
+          </select>
           <input
             type="text"
             placeholder="Search shows..."
@@ -98,15 +103,10 @@ function ChannelPage() {
             value={searchQuery}
             onChange={handleInputChange}
           />
-          <select value={statusFilter} onChange={handleStatusChange}>
-            <option value="all">All</option>
-            <option value="Completed">Completed</option>
-            <option value="Edit required">Edit required</option>
-          </select>
         </div>
       </nav>
       <>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} style={{ marginTop: "3.5rem" }}>
           {filteredShows.map((data) => {
             const showLink = `/channel/${channelName}/show/${data.episodeNumber}`;
             return (
@@ -114,13 +114,27 @@ function ChannelPage() {
                 <Card className="show-card">
                   <CardContent>
                     <Link to={showLink} className="show-link">
+                      {/* <Typography color="textSecondary">
+                        {data.episodeNumber}
+                      </Typography> */}
+                      <div className="episode-number-header">
+                        {data.episodeNumber}
+                      </div>
+
                       <Typography variant="h6" component="div">
                         {data.show}
                       </Typography>
-                      <Typography color="textSecondary">
-                        {data.episodeNumber}
-                      </Typography>
-                      <Typography color="textSecondary">
+                      <Typography
+                        className={`status-text ${
+                          data.status === "Completed"
+                            ? "completed"
+                            : data.status === "Edit required"
+                            ? "edit-required"
+                            : ""
+                        }`}
+                        color="textSecondary"
+                        align="center"
+                      >
                         {data.status}
                       </Typography>
                     </Link>
