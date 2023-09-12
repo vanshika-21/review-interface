@@ -1,0 +1,73 @@
+.episodeName{
+  height: 25rem;
+   flex-direction: column; /* Change flex direction to column */
+  justify-content: flex-start; /* Optional: Align content to the top */
+  align-items: flex-start; /* Optional: Align items to the start */
+  color: whitesmoke;
+  background-image: url(
+    "../images/Transparent.png"
+  );
+  background-size: cover ;
+  background-position: center;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.luminance-text {
+    background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #ffffffc8, transparent, transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: rgba(255, 255, 255, 0.8); /* Adjust the alpha value (0.8) as needed */
+    font-size: 4vw;
+    font-family: "Source Sans Pro", sans-serif;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+    display: inline-flex;
+  }
+  
+  @keyframes reveal {
+    80% {
+      letter-spacing: 8px;
+    }
+    100% {
+      background-size: 300% 300%;
+    }
+  }
+  
+  @keyframes glow {
+    40% {
+      text-shadow: 0 0 8px #fff;
+    }
+  }
+
+
+  .grid-container {
+    display: inline-block;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    align-items: center; /* Center vertically within the grid */
+    justify-content: center;
+  }
+  
+  .item-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-image: url("../images/cardbgg.png");
+    height: 200px;
+    color: #fff;
+    margin: auto; /* Center the card horizontally */
+
+  }
+  
+  .item-card input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .item-card-content {
+    flex: 1;
+  }
+  

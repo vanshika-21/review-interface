@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import compliancetaskdata from "../compliance-task-data.json";
+import "../Style/ShowPage.css";
+import ItemCard from "./ItemCard";
 
 function ShowPage() {
   const { episodeNumber } = useParams();
@@ -63,10 +65,22 @@ function ShowPage() {
     <div>
       {episodeData ? (
         <>
-          <h2>Episode Number: {episodeData.episodeNumber}</h2>
-          <h2>Show name: {episodeData.show}</h2>
-          <h2>Show Status: {episodeData.status}</h2>
-          <h2>Items:</h2>
+          <div className="episodeName">
+            <div>
+              <h2 className="luminance-text">{episodeData.show}</h2>
+            </div>
+            <div>
+              <h2>Episode Number: {episodeData.episodeNumber}</h2>
+            </div>
+            <div>
+              <h2>Status: {episodeData.status}</h2>
+            </div>
+            <div>
+              <h2>{episodeData.reviewDate}</h2>
+            </div>
+          </div>
+
+          {/* <h2>Items:</h2>
           {episodeData.status === "Completed"
             ? episodeData.items.map((item, index) => (
                 <div key={index}>{item.comment}</div>
@@ -80,17 +94,32 @@ function ShowPage() {
                   />
                   {item.comment}
                 </div>
-              ))}
-          {episodeData.status !== "Completed" && (
-            <>
-              <button
-                disabled={showStatus === "incomplete"}
-                onClick={handleCompleteButtonClick}
-              >
-                Complete
-              </button>
-            </>
-          )}
+              ))} */}
+          <h2>Items:</h2>
+          <div className="grid-container">
+            {episodeData.items.map((item, index) => (
+              <ItemCard
+                key={index}
+                item={item}
+                checked={checkedItems[index]}
+                onCheckboxChange={() => handleCheckboxChange(index)}
+                showCheckbox={episodeData.status !== "Completed"}
+              />
+            ))}
+          </div>
+          <div>
+            {episodeData.status !== "Completed" && (
+              <>
+                <button
+                  className="completed-button"
+                  disabled={showStatus === "incomplete"}
+                  onClick={handleCompleteButtonClick}
+                >
+                  Complete
+                </button>
+              </>
+            )}
+          </div>
         </>
       ) : (
         <p>Episode not found</p>
