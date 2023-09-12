@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, Route, Router } from "react-router-dom";
 import compliancetaskdata from "../compliance-task-data.json";
+import Card from "@mui/material/Card"; // Import Material-UI Card component
+import CardContent from "@mui/material/CardContent"; // Import Material-UI CardContent component
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import "../Style/ChannelPage.css";
 
 function ChannelPage() {
   const { channelName } = useParams();
@@ -83,32 +88,48 @@ function ChannelPage() {
 
   return (
     <div>
-      <h1>channel name : {channelName} </h1>
-      <div className="search-box">
-        <input
-          type="text"
-          placeholder="Search shows..."
-          className="search-input"
-          value={searchQuery}
-          onChange={handleInputChange}
-        />
-        <select value={statusFilter} onChange={handleStatusChange}>
-          <option value="all">All</option>
-          <option value="Completed">Completed</option>
-          <option value="Edit required">Edit required</option>
-        </select>
-      </div>
+      <nav className="navbar">
+        <h1 style={{ color: "white" }}>{channelName} </h1>
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="Search shows..."
+            className="search-input"
+            value={searchQuery}
+            onChange={handleInputChange}
+          />
+          <select value={statusFilter} onChange={handleStatusChange}>
+            <option value="all">All</option>
+            <option value="Completed">Completed</option>
+            <option value="Edit required">Edit required</option>
+          </select>
+        </div>
+      </nav>
       <>
-        {filteredShows.map((data) => {
-          const showLink = `/channel/${channelName}/show/${data.episodeNumber}`;
-          return (
-            <div key={data.episodeNumber}>
-              <Link to={showLink}>
-                {data.show}&nbsp;{data.status}
-              </Link>
-            </div>
-          );
-        })}
+        <Grid container spacing={2}>
+          {filteredShows.map((data) => {
+            const showLink = `/channel/${channelName}/show/${data.episodeNumber}`;
+            return (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={data.episodeNumber}>
+                <Card className="show-card">
+                  <CardContent>
+                    <Link to={showLink} className="show-link">
+                      <Typography variant="h6" component="div">
+                        {data.show}
+                      </Typography>
+                      <Typography color="textSecondary">
+                        {data.episodeNumber}
+                      </Typography>
+                      <Typography color="textSecondary">
+                        {data.status}
+                      </Typography>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
       </>
     </div>
   );
