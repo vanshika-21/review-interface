@@ -1,6 +1,6 @@
 body {
     /* background: linear-gradient(to right, red, black); */
-    background: #151515;
+    background: #ffffff;
     margin: 0; /* Remove default body margin */
     padding: 0; /* Remove default body padding */
 }
@@ -10,7 +10,8 @@ body {
     left: 0;
     right: 0;
     z-index: 60;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.1)); /* Apply the gradient with 50% transparency */
+    /* background: linear-gradient(to top, #09203f 0%, #537895 100%); */
+    background: black;
     padding: 10px; /* Removed quotes */
     color:black;
     display: flex;
@@ -31,3 +32,135 @@ body {
     display: flex; /* Align search box and other content horizontally */
     align-items: center; /* Vertically center content */
   }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+    max-width: 200px; /* Adjust the maximum width as needed */
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    background-color: #0c0c0c; /* Card background color */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05); /* Increase card size on hover */
+  }
+  
+  .card-bg {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    min-height: 200px; /* Set the desired height */
+  }
+  
+  .card-content {
+    padding: 16px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Card content background color */
+  }
+
+  .luminance-text {
+    background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 10vw;
+    font-family: "Source Sans Pro", sans-serif;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+  }
+  
+  @keyframes reveal {
+    80% {
+      letter-spacing: 8px;
+    }
+    100% {
+      background-size: 300% 300%;
+    }
+  }
+  
+  @keyframes glow {
+    40% {
+      text-shadow: 0 0 8px #fff;
+    }
+  }
+  /* Define the CSS class for the "text reveal" effect */
+/* Define the CSS class for the typing text animation */
+.typing-animation {
+  overflow: hidden;
+  display: inline-block;
+  animation: typing 3s steps(18, end), blink-caret 0.5s step-end infinite;
+  white-space: nowrap;
+  font-size: 1.5rem;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-right: 2px solid transparent;
+  }
+  50% {
+    border-right: 2px solid #fff;
+  }
+}
+
+  .search-container {
+    display: flex; /* Use flexbox to share available space */
+    align-items: center; /* Align items vertically */
+  }
+  /* Styles for the search input */
+.search-input {
+  flex-grow: 1;
+  color: #000000; /* Text color */
+  width: 100%; /* Set the width to 100% to fill the available space */
+}
+
+/* Style for the status filter dropdown */
+.status-filter {
+  color: #fff; /* Text color */
+  background-color: transparent; /* Background color */
+  width: 100%; /* Set the width to 100% to fill the available space */
+  margin-left: 16px; /* Adjust the margin as needed */
+}
+  /* Add this CSS to style the search icon when the input is open */
+.search-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  color: #7f7e7e; /* Change the color to your desired color */
+  font-size: 24px;
+  transition: color 0.3s ease; /* Add a smooth transition for the color change */
+}
+
+.search-icon:focus {
+  outline: none; /* Remove the focus outline */
+}
+
+/* Style the icon differently when the input is open */
+.is-search-open .search-icon {
+  color: #ffffff; /* Change the color when the input is open */
+}
+
