@@ -58,21 +58,6 @@ function ChannelPage() {
   // };
   // console.log(channels);
 
-  // const getData = () => {
-  //   fetch(compliancetaskdata)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       setData(data);
-  //       const channels = getChannels(data);
-  //       setChannels(channels);
-  //       console.log(channels, "channels");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // };
-
   const handleStatusChange = (e) => {
     const status = e.target.value;
     setStatusFilter(status);
@@ -89,7 +74,7 @@ function ChannelPage() {
   return (
     <div>
       <nav className="channel-navbar">
-        <h1 style={{ color: "white" }}>{channelName} </h1>
+        <h1>{channelName} </h1>
         <div className="filter-search-container">
           <select value={statusFilter} onChange={handleStatusChange}>
             <option value="all">All</option>
@@ -114,9 +99,6 @@ function ChannelPage() {
                 <Card className="show-card">
                   <CardContent>
                     <Link to={showLink} className="show-link">
-                      {/* <Typography color="textSecondary">
-                        {data.episodeNumber}
-                      </Typography> */}
                       <div className="episode-number-header">
                         {data.episodeNumber}
                       </div>

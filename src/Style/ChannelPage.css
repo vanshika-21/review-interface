@@ -70,7 +70,10 @@ color: white;
     color: white; /* Set the text color to white */
     height: 2rem;
   }
-  
+  .channel-navbar h1{
+    text-transform: uppercase;
+    color: #ffffff;
+  }
   .filter-search-container {
     display: flex;
     gap: 1rem;

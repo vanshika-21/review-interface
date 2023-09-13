@@ -2,27 +2,6 @@ import React from "react";
 
 function ItemCard({ item, checked, onCheckboxChange, showCheckbox }) {
   return (
-    // <div className="item-card">
-    //   <div className="item-card-content">
-    //     <p>{item.comment}</p>
-    //     <p>Timecode In: {item["timecode in"]}</p>
-    //     <p>Timecode Out: {item["timecode out"]}</p>
-    //     <p>Category: {item.categoryName}</p>
-    //   </div>
-    //   {showCheckbox && (
-    //     <label className="custom-checkbox-label">
-    //       <input
-    //         type="checkbox"
-    //         className="custom-checkbox"
-    //         checked={checked}
-    //         onChange={onCheckboxChange}
-    //         id={`checkbox-${item.id}`}
-    //       />
-    //       <span className="checkmark"></span>
-    //       {/* Add a span for the custom checkbox */}
-    //     </label>
-    //   )}
-    // </div>
     <div className="item-card">
       <div className="item-card-content">
         <p>{item.comment}</p>
@@ -39,7 +18,6 @@ function ItemCard({ item, checked, onCheckboxChange, showCheckbox }) {
               id={`checkbox-${item.id}`}
             />
             <span className="checkmark"></span>{" "}
-            {/* Add a span for the custom checkbox */}
           </label>
         )}
       </div>

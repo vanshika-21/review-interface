@@ -73,6 +73,7 @@ body {
     background-color: rgba(255, 255, 255, 0.9); /* Card content background color */
   }
 
+  /* welcome user */
   .luminance-text {
     background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
     -webkit-background-clip: text;
@@ -97,9 +98,9 @@ body {
       text-shadow: 0 0 8px #fff;
     }
   }
-  /* Define the CSS class for the "text reveal" effect */
-/* Define the CSS class for the typing text animation */
-.typing-animation {
+
+  /* select your channel text */
+  .typing-animation {
   overflow: hidden;
   display: inline-block;
   animation: typing 3s steps(18, end), blink-caret 0.5s step-end infinite;
@@ -138,29 +139,30 @@ body {
 
 /* Style for the status filter dropdown */
 .status-filter {
-  color: #fff; /* Text color */
-  background-color: transparent; /* Background color */
-  width: 100%; /* Set the width to 100% to fill the available space */
-  margin-left: 16px; /* Adjust the margin as needed */
+  color: #fff;
+  background-color: transparent;
+  width: 100%; 
+  margin-left: 16px;
 }
-  /* Add this CSS to style the search icon when the input is open */
+
+/* Add this CSS to style the search icon when the input is open */
 .search-icon {
   background-color: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
   margin: 0;
-  color: #7f7e7e; /* Change the color to your desired color */
+  color: #7f7e7e;
   font-size: 24px;
-  transition: color 0.3s ease; /* Add a smooth transition for the color change */
+  transition: color 0.3s ease;
 }
 
 .search-icon:focus {
-  outline: none; /* Remove the focus outline */
+  outline: none; 
 }
 
-/* Style the icon differently when the input is open */
+/* Change the color when the input is open */
 .is-search-open .search-icon {
-  color: #ffffff; /* Change the color when the input is open */
+  color: #ffffff; 
 }
 

@@ -33,7 +33,6 @@ function ShowPage() {
 
     // Enable the "Complete" button only if all items are checked
     setShowStatus(areAllItemsChecked ? "completed" : "incomplete");
-    console.log("current value", showStatus);
   }, [checkedItems]);
 
   const initializeCheckedItems = (items) => {
