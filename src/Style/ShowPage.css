@@ -12,7 +12,7 @@
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
-.luminance-text {
+.lumi-text {
     background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #ffffffc8, transparent, transparent);
     -webkit-background-clip: text;
     background-clip: text;
@@ -40,7 +40,7 @@
 
 
   .grid-container {
-    display: inline-block;
+    display:inline-grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
     align-items: center; /* Center vertically within the grid */
@@ -57,7 +57,7 @@
     border-radius: 5px;
     padding: 10px;
     background-image: url("../images/cardbgg.png");
-    height: 200px;
+    height: fit-content;
     color: #fff;
     margin: auto; /* Center the card horizontally */
 
@@ -71,3 +71,99 @@
     flex: 1;
   }
   
+  /* custom-button {
+    position: relative;
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid rgb(12, 141, 12);
+    background: transparent;
+    color: #061301;
+    cursor: pointer;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s; /* Add transition for smooth color change */
+  
+  
+  /*  */
+
+  /* ShowPage.css */
+
+.custom-button {
+  font-size: 1rem; /* Increase button size */
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.5em 1.5em; /* Increase padding for a larger button */
+  border: 2px solid rgb(12, 141, 12);
+  background: transparent;
+  color: #061301;
+  text-transform: uppercase;
+  transition: background-color 0.3s, color 0.3s; /* Add transition effect */
+  border-radius: 50px;
+  margin-top: 1%;
+}
+
+.custom-button:enabled {
+  background-color: green; /* Green background when enabled */
+  color: white; /* White text color when enabled */
+  cursor: pointer;
+}
+
+.custom-button:disabled {
+  background-color: grey; /* Grey background when disabled */
+  color: #4d4a4a; /* Light grey text color when disabled */
+  cursor: not-allowed;
+}
+/* Custom checkbox styles */
+.custom-checkbox-label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.custom-checkbox-label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.custom-checkbox-label input:checked ~ .checkmark {
+  background-color: #117200;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox-label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-checkbox-label .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}

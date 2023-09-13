@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import compliancetaskdata from "../compliance-task-data.json";
 import "../Style/ShowPage.css";
 import ItemCard from "./ItemCard";
+import Swal from "sweetalert2";
 
 function ShowPage() {
   const { episodeNumber } = useParams();
@@ -53,13 +54,27 @@ function ShowPage() {
     console.log(showStatus);
   };
 
-  const handleCompleteButtonClick = () => {
-    if (showStatus === "completed") {
-      alert("Show marked as completed!");
-    }
+  // Update the showStatus to "completed"
+  const markAsCompleted = () => {
+    setEpisodeData((prevData) => ({
+      ...prevData,
+      status: "completed",
+    }));
   };
 
-  // console.log(episodeData);
+  const handleCompleteButtonClick = () => {
+    if (showStatus === "completed") {
+      Swal.fire({
+        title: "Good job!",
+        text: "Items reviewed completely",
+        icon: "success",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          markAsCompleted();
+        }
+      });
+    }
+  };
 
   return (
     <div>
@@ -67,7 +82,7 @@ function ShowPage() {
         <>
           <div className="episodeName">
             <div>
-              <h2 className="luminance-text">{episodeData.show}</h2>
+              <h2 className="lumi-text">{episodeData.show}</h2>
             </div>
             <div>
               <h2>Episode Number: {episodeData.episodeNumber}</h2>
@@ -80,21 +95,6 @@ function ShowPage() {
             </div>
           </div>
 
-          {/* <h2>Items:</h2>
-          {episodeData.status === "Completed"
-            ? episodeData.items.map((item, index) => (
-                <div key={index}>{item.comment}</div>
-              ))
-            : episodeData.items.map((item, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    checked={checkedItems[index]}
-                    onChange={() => handleCheckboxChange(index)}
-                  />
-                  {item.comment}
-                </div>
-              ))} */}
           <h2>Items:</h2>
           <div className="grid-container">
             {episodeData.items.map((item, index) => (
@@ -109,15 +109,18 @@ function ShowPage() {
           </div>
           <div>
             {episodeData.status !== "Completed" && (
-              <>
+              <span>
                 <button
-                  className="completed-button"
+                  className={`custom-button ${
+                    showStatus === "incomplete" ? "disabled" : ""
+                  }`}
                   disabled={showStatus === "incomplete"}
                   onClick={handleCompleteButtonClick}
+                  type="button"
                 >
                   Complete
                 </button>
-              </>
+              </span>
             )}
           </div>
         </>
