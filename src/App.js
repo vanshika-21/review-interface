@@ -1,15 +1,9 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-// import "./compliance-task-data.json";
+import React from "react";
 import HomePage from "./Components/HomePage";
 import ShowPage from "./Components/ShowPage";
 import ChannelPage from "./Components/ChannelPage";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (

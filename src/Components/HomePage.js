@@ -3,10 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import compliancetaskdata from "../compliance-task-data.json";
 import "../Style/searchBox.css";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import "../Style/HomePage.css";
-import { WidthFull } from "@mui/icons-material";
 import sonyMarathilogo from "../images/sonymarathi.png";
 import { Search as SearchIcon } from "@mui/icons-material";
 
@@ -171,7 +168,6 @@ function HomePage() {
       <div
         style={{
           marginTop: "30px",
-          // backgroundImage: `url(https://img.freepik.com/free-vector/realistic-white-golden-geometric-background_79603-2032.jpg)`, // Set the background image
         }}
       >
         <h1 className="typing-animation">Select your TV channel</h1>
@@ -190,11 +186,6 @@ function HomePage() {
                     backgroundImage: `url(${getChannelImageSrc(channel)})`,
                   }}
                 ></div>
-                {/* <CardContent>
-                  <Typography variant="h5" component="div">
-                    {channel}
-                  </Typography>
-                </CardContent> */}
               </Card>
             </Link>
           ))}
